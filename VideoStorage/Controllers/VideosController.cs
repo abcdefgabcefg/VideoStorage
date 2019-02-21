@@ -16,9 +16,12 @@ namespace VideoStorage.Controllers
         private VideoContex db = new VideoContex();
 
         // GET: Videos
-        public ActionResult Index()
+        public ActionResult Index(int? id)
         {
-            return View(db.Videos.ToList());
+            ViewBag.IDs = from video in db.Videos
+                          select video.ID;
+            ViewBag.Count = db.Videos.Count();
+            return View(db.Videos.Find(id));
         }
 
         // GET: Videos/Details/5

@@ -1,0 +1,1 @@
+﻿document.documentElement.style.setProperty('--count', Number(document.getElementById('count').innerHTML) + 1);

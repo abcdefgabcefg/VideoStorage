@@ -1,33 +1,30 @@
-﻿@model IEnumerable<VideoStorage.Models.Video>
+﻿@model VideoStorage.Models.Video
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Video";
 }
 
-<h2>Index</h2>
+<h2>Video</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Path)
-        </th>
-        <th></th>
-    </tr>
+<div class="dropdown-id">
+    <p>ID</p>
+    <div class="dropdown-id-content">
+        @foreach (var id in ViewBag.IDs)
+        {
+            <a href="@Url.Action("Index", new { id })">@id</a>
+        }
+    </div>
+</div>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Path)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
-    </tr>
+<div id="count" style="display:none;">@ViewBag.Count</div>
+
+
+
+@if (Model != null)
+{
+     <iframe src=@Model.Path width="640" height="480" class="video"></iframe>
 }
 
-</table>
+
+
+<script src="~/MySctipts/index.js"></script>
